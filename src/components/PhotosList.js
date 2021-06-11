@@ -71,19 +71,21 @@ const PhotosList = ({ title, images }) => {
   return (
     <>
       <h1 className="gallery-title">{title}</h1>
-      <LightGallery
-        speed={500}
-        onInit={onInit}
-        plugins={[autoPlay]}
-        selector=".react-photo-gallery--gallery > div > div"
-      >
-        <Gallery
-          photos={formattedImages}
-          targetRowHeight={300}
-          margin={5}
-          renderImage={GatsbyImageRender}
-        />
-      </LightGallery>
+      {typeof window !== "undefined" && (
+        <LightGallery
+          speed={500}
+          onInit={onInit}
+          plugins={[autoPlay]}
+          selector=".react-photo-gallery--gallery > div > div"
+        >
+          <Gallery
+            photos={formattedImages}
+            targetRowHeight={300}
+            margin={5}
+            renderImage={GatsbyImageRender}
+          />
+        </LightGallery>
+      )}
     </>
   )
 }

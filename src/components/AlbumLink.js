@@ -5,8 +5,6 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 const AlbumLink = ({ name, image }) => {
   const imageRender = getImage(image)
-  console.log("image")
-  console.log(image)
   return (
     <Col lg={4} sm={6} xs={12}>
       <Link to={`/${name}`} className="albums-image-link">
