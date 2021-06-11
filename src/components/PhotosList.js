@@ -1,4 +1,4 @@
-import React, { useRef, useCallback, useEffect } from "react"
+import React, { useRef, useCallback, useEffect, useState } from "react"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import Gallery from "react-photo-gallery"
 import LightGallery from "lightgallery/react"
@@ -30,9 +30,28 @@ const getImages = imageArray => {
 }
 
 const PhotosList = ({ title, images }) => {
+  const [currentIndex, setCurrentIndex] = useState(null)
+  const [preload, setPreload] = useState(null)
   const lightGallery = useRef(null)
   const { author } = useSiteMetadata()
-  const formattedImages = getImages(images)
+
+  useEffect(() => {
+    if (currentIndex > 0) {
+      console.log(currentIndex - 1)
+      console.log(
+        images[currentIndex - 1].full.gatsbyImageData.images.sources[0].srcSet
+      )
+      const img = new Image()
+      img.src =
+        images[currentIndex - 1].full.gatsbyImageData.images.sources[0].srcSet
+      setPreload(
+        images[currentIndex - 1].full.gatsbyImageData.images.sources[0].srcSet
+      )
+    }
+    if (currentIndex < images.length - 1) {
+      console.log(currentIndex + 1)
+    }
+  }, [currentIndex, images.length])
 
   const onInit = useCallback(detail => {
     if (detail) {
@@ -46,6 +65,8 @@ const PhotosList = ({ title, images }) => {
     }, 500)
     return () => clearTimeout(refresh)
   }, [])
+
+  const formattedImages = getImages(images)
 
   const GatsbyImageRender = ({ index, photo, margin }) => {
     const preview = photo.preview
@@ -63,6 +84,7 @@ const PhotosList = ({ title, images }) => {
           image={getImage(preview.image)}
           alt={photo.alt}
           style={{ margin, height: photo.height, width: photo.width }}
+          className="album-preview"
         />
       </div>
     )
@@ -70,6 +92,7 @@ const PhotosList = ({ title, images }) => {
 
   return (
     <>
+      <img srcSet={preload} />
       <h1 className="gallery-title">{title}</h1>
       {typeof window !== "undefined" && (
         <LightGallery
@@ -77,6 +100,7 @@ const PhotosList = ({ title, images }) => {
           onInit={onInit}
           plugins={[autoPlay]}
           selector=".react-photo-gallery--gallery > div > div"
+          onAfterSlide={a => setCurrentIndex(a.index)}
         >
           <Gallery
             photos={formattedImages}

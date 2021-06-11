@@ -1,14 +1,22 @@
 import * as React from "react"
+import { Helmet } from "react-helmet"
 
-import Layout from "../components/layout"
-import Seo from "../components/seo"
+import Navbar from "../components/Navbar"
+import MainContainer from "../components/MainContainer"
+import useSiteMetadata from "../hooks/useSiteMetadata"
 
-const NotFoundPage = () => (
-  <Layout>
-    <Seo title="404: Not found" />
-    <h1>404: Not Found</h1>
-    <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-  </Layout>
-)
+const NotFound = props => {
+  const { title } = useSiteMetadata()
 
-export default NotFoundPage
+  return (
+    <>
+      <Helmet>
+        <title>404 | {title}</title>
+      </Helmet>
+      <Navbar />
+      <MainContainer>404</MainContainer>
+    </>
+  )
+}
+
+export default NotFound

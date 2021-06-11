@@ -8,7 +8,7 @@ import useShrunk from "../hooks/useShrunk"
 
 const NavbarComponent = () => {
   const isShrunk = useShrunk()
-  const { title } = useSiteMetadata()
+  const { title, subtitle } = useSiteMetadata()
 
   return (
     <Navbar
@@ -31,7 +31,7 @@ const NavbarComponent = () => {
               "navbar-subbrand": !isShrunk,
             })}
           >
-            Photographie
+            {subtitle}
           </div>
         </div>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />

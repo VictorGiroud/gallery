@@ -48,17 +48,25 @@ async function getAlbums(graphql) {
       throw result.errors
     }
 
-    return result.data.allFile.edges.map(f =>
-      f.node.relativeDirectory.replace("photos/", "")
-    )
+    return result.data.allFile.edges.map(f => {
+      const name = f.node.relativeDirectory.replace("photos/", "")
+      return JSON.stringify({
+        name,
+        path: name
+          .toLowerCase()
+          .replace(/ /g, "-")
+          .replace(/[^\w-]+/g, ""),
+      })
+    })
   })
-
-  return Array.from(new Set(directories))
+  return Array.from(
+    [...new Set([...directories])].map(item => JSON.parse(item))
+  )
 }
 
 async function getAlbumsImages(graphql, paths, albums) {
   const images = {}
-  albums.forEach(a => (images[a] = []))
+  albums.forEach(a => (images[a.name] = []))
   await Promise.all(
     paths.map(async path => {
       const album = path.split("/", 2)[1]
@@ -104,7 +112,7 @@ async function createPages({ graphql, actions }) {
 
   const miniatures = {}
   albums.forEach(
-    album => (miniatures[album] = allAlbumsImages[album][0].preview)
+    album => (miniatures[album.name] = allAlbumsImages[album.name][0].preview)
   )
 
   actions.createPage({
@@ -118,11 +126,11 @@ async function createPages({ graphql, actions }) {
 
   albums.forEach(album => {
     actions.createPage({
-      path: album,
+      path: album.path,
       component: AlbumTemplate,
       context: {
-        name: album,
-        images: allAlbumsImages[album],
+        name: album.name,
+        images: allAlbumsImages[album.name],
       },
     })
   })

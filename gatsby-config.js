@@ -1,6 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Amélie Giroud`,
+    subtitle: `Photographie`,
     description: `Hello! I'm Amélie. I love to take photographs of anything I see. I would like to make you discover some of my pictures through these albums. Enjoy and have fun!`,
     author: `Amélie Giroud`,
   },

@@ -41,11 +41,11 @@
 
 
  .albums-image-container {
-    position: relative;
-    width: 100%;
-    padding-bottom: 75%;
-    float: left;
-    height: 0;
+  position: relative;
+  width: 100%;
+  padding-bottom: 75%;
+  float: left;
+  height: 0;
 
  }
 
@@ -75,7 +75,15 @@
   }
 
   .gallery-title {
-      font-family: 'Abel',
-      sans-serif;
-      text-align: center;
+    font-family: 'Abel',
+    sans-serif;
+    text-align: center;
+  }
+
+  .album-preview {
+    cursor: zoom-in;
+  } 
+
+  .album-preview:hover {
+    opacity: 0.85;
   }

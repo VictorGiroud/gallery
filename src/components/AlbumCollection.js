@@ -7,7 +7,12 @@ const AlbumCollection = ({ albums, miniatures }) => (
   <Container>
     <Row>
       {albums.map(album => (
-        <AlbumLink name={album} key={album} image={miniatures[album]} />
+        <AlbumLink
+          name={album.name}
+          key={album.name}
+          image={miniatures[album.name]}
+          to={album.path}
+        />
       ))}
     </Row>
   </Container>

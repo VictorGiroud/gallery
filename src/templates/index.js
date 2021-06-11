@@ -8,14 +8,18 @@ import useSiteMetadata from "../hooks/useSiteMetadata"
 import Description from "../components/Description"
 
 const IndexPageTemplace = props => {
-  const { title, description } = useSiteMetadata()
+  const { title, subtitle, description } = useSiteMetadata()
   const ctx = props.pageContext
   const { albums, miniatures } = ctx
 
   return (
     <>
       <Helmet>
-        <title>{title}</title>
+        <title>
+          {title} - {subtitle}
+        </title>
+        <meta name="description" content={description} />
+        <meta name="keywords" content={`${title},${title}`} />
       </Helmet>
       <Navbar />
       <MainContainer>
