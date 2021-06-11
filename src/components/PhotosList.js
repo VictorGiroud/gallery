@@ -55,7 +55,7 @@ const PhotosList = ({ title, images }) => {
         key={photo.alt}
         data-lg-size={`${full.width}-${full.height}`}
         className="gallery-item"
-        data-src={full.image.src}
+        data-src={full.src}
         data-sources={JSON.stringify(full.image.gatsbyImageData.images.sources)}
         data-sub-html={`<h4>${photo.alt}</h4><p>${author}</p>`}
       >
