@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Amélie Giroud`,
+    description: `Hello! I'm Amélie. I love to take photographs of anything I see. I would like to make you discover some of my pictures through these albums. Enjoy and have fun!`,
+    author: `Amélie Giroud`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -15,7 +15,14 @@ module.exports = {
       },
     },
     `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        defaults: {
+          quality: 100,
+        },
+      },
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -25,7 +32,17 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/favicon-32x32.png`, // This path is relative to the root of the site.
+      },
+    },
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [
+          `abel`,
+          `source sans pro\:400`, // you can also specify font weights and styles
+        ],
+        display: "swap",
       },
     },
     `gatsby-plugin-gatsby-cloud`,
