@@ -49,8 +49,6 @@ const ContactPage = () => {
       .catch(error => alert(error))
   }
 
-  console.log(formData)
-
   return (
     <>
       <Helmet>
