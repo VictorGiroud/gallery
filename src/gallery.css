@@ -87,3 +87,7 @@
   .album-preview:hover {
     opacity: 0.85;
   }
+
+  .hidden {
+    display: none;
+  }

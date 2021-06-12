@@ -31,27 +31,21 @@ const getImages = imageArray => {
 
 const PhotosList = ({ title, images }) => {
   const [currentIndex, setCurrentIndex] = useState(null)
-  const [preload, setPreload] = useState(null)
+  const [preload, setPreload] = useState([])
   const lightGallery = useRef(null)
   const { author } = useSiteMetadata()
 
   useEffect(() => {
-    if (currentIndex > 0) {
-      console.log(currentIndex - 1)
-      console.log(
-        images[currentIndex - 1].full.gatsbyImageData.images.sources[0].srcSet
+    const indexToPreload = []
+    indexToPreload.push(currentIndex > 0 ? currentIndex - 1 : images.length - 1)
+    indexToPreload.push(currentIndex < images.length - 1 ? currentIndex + 1 : 0)
+    setPreload(
+      indexToPreload.map(
+        index => images[index].full.gatsbyImageData.images.sources[0].srcSet
       )
-      const img = new Image()
-      img.src =
-        images[currentIndex - 1].full.gatsbyImageData.images.sources[0].srcSet
-      setPreload(
-        images[currentIndex - 1].full.gatsbyImageData.images.sources[0].srcSet
-      )
-    }
-    if (currentIndex < images.length - 1) {
-      console.log(currentIndex + 1)
-    }
-  }, [currentIndex, images.length])
+    )
+    console.log(indexToPreload)
+  }, [currentIndex, images])
 
   const onInit = useCallback(detail => {
     if (detail) {
@@ -92,7 +86,6 @@ const PhotosList = ({ title, images }) => {
 
   return (
     <>
-      <img srcSet={preload} />
       <h1 className="gallery-title">{title}</h1>
       {typeof window !== "undefined" && (
         <LightGallery
@@ -110,6 +103,11 @@ const PhotosList = ({ title, images }) => {
           />
         </LightGallery>
       )}
+      <div className="hidden">
+        {preload.map(src => (
+          <img srcSet={src} key={src} alt="" />
+        ))}
+      </div>
     </>
   )
 }
