@@ -19,7 +19,7 @@ const IndexPageTemplace = props => {
           {title} - {subtitle}
         </title>
         <meta name="description" content={description} />
-        <meta name="keywords" content={`${title},${title}`} />
+        <meta name="keywords" content={`${title},${subtitle}`} />
       </Helmet>
       <Navbar />
       <MainContainer>

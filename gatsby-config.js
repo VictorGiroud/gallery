@@ -1,3 +1,9 @@
+const activeEnv =
+  process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || "development"
+require("dotenv").config({
+  path: `.env.${activeEnv}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: `Amélie Giroud`,
@@ -16,6 +22,12 @@ module.exports = {
       },
     },
     `gatsby-transformer-sharp`,
+    {
+      resolve: "gatsby-transformer-sharp-watermark",
+      options: {
+        watermark: `${__dirname}/src/images/watermark.png`,
+      },
+    },
     {
       resolve: `gatsby-plugin-sharp`,
       options: {
@@ -47,6 +59,7 @@ module.exports = {
       },
     },
     `gatsby-plugin-gatsby-cloud`,
+    "gatsby-plugin-netlify",
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

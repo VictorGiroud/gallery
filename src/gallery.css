@@ -1,5 +1,6 @@
 .main-container {
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .navbar-shrunked {
@@ -90,4 +91,12 @@
 
   .hidden {
     display: none;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .form-label {
+    margin-bottom: 0;
   }
