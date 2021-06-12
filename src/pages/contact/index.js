@@ -4,9 +4,9 @@ import { Helmet } from "react-helmet"
 import { Container, Form, Button } from "react-bootstrap"
 import { navigate } from "gatsby-link"
 
-import Navbar from "../components/Navbar"
-import MainContainer from "../components/MainContainer"
-import useSiteMetadata from "../hooks/useSiteMetadata"
+import Navbar from "../../components/Navbar"
+import MainContainer from "../../components/MainContainer"
+import useSiteMetadata from "../../hooks/useSiteMetadata"
 
 const RECAPTCHA_KEY = process.env.SITE_RECAPTCHA_KEY
 
