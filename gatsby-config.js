@@ -8,7 +8,7 @@ module.exports = {
   siteMetadata: {
     title: `Amélie Giroud`,
     subtitle: `Photographie`,
-    description: `Hello! I'm Amélie. I love to take photographs of anything I see. I would like to make you discover some of my pictures through these albums. Enjoy and have fun!`,
+    description: `Bonjour je m'appelle Amélie Giroud. J'aime beaucoup prendre des photos et encore plus les partager !`,
     author: `Amélie Giroud`,
   },
   plugins: [
